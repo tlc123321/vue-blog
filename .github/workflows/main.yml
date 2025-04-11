@@ -33,7 +33,7 @@ jobs:
       - name: Install and Build
         run: |
           yarn install --frozen-lockfile
-          yarn build
+          yarn && yarn build
         env:
           NODE_ENV: production
 
