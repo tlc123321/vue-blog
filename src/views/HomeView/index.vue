@@ -9,26 +9,6 @@
     </div>
 
     <div class="relative z-10">
-      <!-- 导航栏 -->
-      <nav class="fixed w-full backdrop-blur-md bg-white/40 dark:bg-gray-900/40 z-50 border-b border-gray-100 dark:border-gray-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div class="flex items-center space-x-4">
-            <el-avatar :size="40" :src="logoUrl" class="object-cover" />
-            <span class="text-xl font-bold text-gray-800 dark:text-white">陈思行的博客</span>
-          </div>
-          <div class="flex items-center space-x-8">
-            <el-menu mode="horizontal" :ellipsis="false" class="border-none">
-              <el-menu-item index="1">首页</el-menu-item>
-              <el-menu-item index="2">文章</el-menu-item>
-              <el-menu-item index="3">关于</el-menu-item>
-            </el-menu>
-            <el-button class="rotate" @click="toggleTheme" circle>
-              <el-icon><Moon v-if="!isDark" /><Sunny v-else /></el-icon>
-            </el-button>
-          </div>
-        </div>
-      </nav>
-
       <!-- Hero区域 -->
       <header class="pt-32 pb-16 px-6">
         <div class="container mx-auto text-center">
@@ -51,6 +31,16 @@
           <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             分享编程技术、设计思考和生活感悟，让我们一起在技术的海洋中探索
           </p>
+          
+          <!-- 添加二次元风格的开始旅程按钮 -->
+          <el-button 
+            type="primary" 
+            class="mt-8 anime-btn"
+            size="large" 
+            @click="startJourney"
+          >
+            开始旅程！
+          </el-button>
         </div>
       </header>
 
@@ -69,6 +59,9 @@ import { reactive, toRefs, onMounted } from 'vue';
 import { Moon, Sunny } from '@element-plus/icons-vue';
 import AvatarComponent from '@/components/AvatarComponent.vue';
 import PostCard from '@/components/PostCard.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const state = reactive({
   isDark: false,
@@ -121,6 +114,10 @@ const updateTime = () => {
   time.hours = String(now.getHours()).padStart(2, '0');
   time.minutes = String(now.getMinutes()).padStart(2, '0');
   time.seconds = String(now.getSeconds()).padStart(2, '0');
+};
+
+const startJourney = () => {
+  router.push('/journey');
 };
 
 onMounted(() => {
@@ -180,6 +177,60 @@ onMounted(() => {
 
 :deep(.el-menu--horizontal .el-menu-item) {
   border-bottom: none !important;
+}
+
+/* 二次元风格按钮 */
+.anime-btn {
+  background: linear-gradient(45deg, #ff69b4, #ff99cc) !important;
+  border: none !important;
+  padding: 12px 30px !important;
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
+  letter-spacing: 2px;
+  border-radius: 25px !important;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.anime-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+  background: linear-gradient(45deg, #ff99cc, #ff69b4) !important;
+}
+
+.anime-btn:active {
+  transform: translateY(1px);
+}
+
+.anime-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.anime-btn:hover::before {
+  left: 100%;
+}
+
+/* 暗色模式适配 */
+.dark .anime-btn {
+  background: linear-gradient(45deg, #ff69b4, #ff1493) !important;
+}
+
+.dark .anime-btn:hover {
+  background: linear-gradient(45deg, #ff1493, #ff69b4) !important;
 }
 </style>
 

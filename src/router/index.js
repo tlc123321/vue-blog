@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView/index.vue'
 import AboutView from '../views/AboutView/index.vue'
+import JourneyView from '../views/JourneyView/index.vue'
 
 // 基础路由配置
 const routes = [
@@ -18,6 +19,11 @@ const routes = [
     name: 'About',
     component: AboutView,
   },
+  {
+    path: '/journey',
+    name: 'Journey',
+    component: JourneyView,
+  }
 ]
 
 const router = createRouter({
