@@ -30,9 +30,14 @@ jobs:
           cache: 'yarn'
 
       # 安装和构建
-      - name: Install and Build
+      - name: Install dependencies
         run: |
-          npm install -g yarn && yarn && npm run build
+          yarn install --frozen-lockfile
+          yarn add vite --dev  # 确保安装 vite
+
+      - name: Build
+        run: |
+          yarn build  # 使用 yarn build 而不是 npm run build
         env:
           NODE_ENV: production
 
