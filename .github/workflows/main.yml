@@ -32,8 +32,7 @@ jobs:
       # 安装和构建
       - name: Install and Build
         run: |
-          yarn install --frozen-lockfile
-          yarn && yarn build
+          npm install -g yarn && yarn && npm run build
         env:
           NODE_ENV: production
 
