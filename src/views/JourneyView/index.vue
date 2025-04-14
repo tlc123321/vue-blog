@@ -17,7 +17,7 @@
         <div class="grid grid-cols-1 gap-6">
           <article v-for="(post, index) in posts" :key="index" 
                    class="bg-white rounded-lg shadow-md overflow-hidden hover:-translate-y-1 transition-transform duration-300">
-            <div class="h-48 overflow-hidden">
+            <div class="h-48 overflow-hidden flex items-center justify-center">
               <img :src="post.image" :alt="post.title" class="w-full h-full object-cover">
             </div>
             <div class="p-6">
@@ -27,17 +27,7 @@
               </div>
               <h2 class="text-xl font-bold mb-3 text-gray-800">{{ post.title }}</h2>
               <p class="text-gray-600 mb-4 line-clamp-2">{{ post.excerpt }}</p>
-              <div class="flex items-center justify-between text-sm text-gray-500">
-                <div class="flex items-center space-x-4">
-                  <span class="flex items-center">
-                    <el-icon class="mr-1"><View /></el-icon>
-                    {{ post.views }}
-                  </span>
-                  <span class="flex items-center">
-                    <el-icon class="mr-1"><Star /></el-icon>
-                    {{ post.likes }}
-                  </span>
-                </div>
+              <div class="flex justify-end">
                 <button class="text-pink-500 hover:text-pink-600 !rounded-button whitespace-nowrap">
                   阅读全文
                 </button>

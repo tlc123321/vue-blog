@@ -46,7 +46,6 @@ const navItems = [
   { name: '旅程', path: '/journey' },
   { name: '关于', path: '/about' }
 ];
-console.log(1);
 
 </script>
 

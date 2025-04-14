@@ -47,7 +47,12 @@
       <!-- 文章列表 -->
       <main class="container mx-auto px-6 py-12">
         <el-row :gutter="20">
-          <PostCard v-for="(post, index) in posts" :key="index" :post="post" />
+          <PostCard 
+            v-for="post in posts" 
+            :key="post.slug" 
+            :post="post" 
+            @click="handlePostClick(post)"
+          />
         </el-row>
       </main>
     </div>
@@ -56,10 +61,10 @@
 
 <script setup>
 import { reactive, toRefs, onMounted } from 'vue';
-import { Moon, Sunny } from '@element-plus/icons-vue';
 import AvatarComponent from '@/components/AvatarComponent.vue';
 import PostCard from '@/components/PostCard.vue';
 import { useRouter } from 'vue-router';
+import { homePosts } from '@/config/posts';
 
 const router = useRouter();
 
@@ -67,29 +72,7 @@ const state = reactive({
   isDark: false,
   logoUrl: 'https://ai-public.mastergo.com/ai/img_res/b375bfab3b410e07272122ec00a8c48a.jpg',
   heroLogoUrl: 'https://ai-public.mastergo.com/ai/img_res/c1902fa44deafe8f6f475db2b472bf9b.jpg',
-  posts: [
-    {
-      title: '深入理解 Vue.js 响应式原理',
-      description: '探讨 Vue.js 框架中响应式系统的实现机制，以及如何更好地利用这一特性开发高性能的前端应用。',
-      category: '前端开发',
-      date: '2024-01-15',
-      image: 'https://ai-public.mastergo.com/ai/img_res/fb37e1a856c56cb7d21fcd4dde025bcb.jpg'
-    },
-    {
-      title: '现代化前端工程化实践',
-      description: '分享在大型前端项目中的工程化实践经验，包括构建工具、自动化测试、持续集成等关键话题。',
-      category: '工程化',
-      date: '2024-01-10',
-      image: 'https://ai-public.mastergo.com/ai/img_res/ba298a86b0be2592c13bc23a6ee51a1f.jpg'
-    },
-    {
-      title: '设计系统的构建与维护',
-      description: '探讨如何构建和维护一个可扩展的设计系统，确保产品视觉和交互的一致性。',
-      category: '设计系统',
-      date: '2024-01-05',
-      image: 'https://ai-public.mastergo.com/ai/img_res/d7f68a2b174594d64ec1070d4c3f0c9f.jpg'
-    }
-  ]
+  posts: homePosts
 });
 
 const time = reactive({
@@ -118,6 +101,13 @@ const updateTime = () => {
 
 const startJourney = () => {
   router.push('/journey');
+};
+
+const handlePostClick = (post) => {
+  router.push({
+    name: 'post',
+    params: { slug: post.slug }
+  });
 };
 
 onMounted(() => {

@@ -5,7 +5,7 @@
       <div class="p-6">
         <div class="flex items-center space-x-2 mb-4">
           <el-tag size="small" type="info">{{ post.category }}</el-tag>
-          <span class="text-sm text-gray-500 dark:text-gray-400">{{ post.date }}</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400">{{ post.createdAt }}</span>
         </div>
         <h2 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">{{ post.title }}</h2>
         <p class="text-gray-600 dark:text-gray-400 mb-4">{{ post.description }}</p>
