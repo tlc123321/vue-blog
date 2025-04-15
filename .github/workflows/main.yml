@@ -40,6 +40,11 @@ jobs:
           yarn build  # 使用 yarn build 而不是 npm run build
         env:
           NODE_ENV: production
+          
+      # 创建404.html文件解决GitHub Pages刷新问题
+      - name: Create 404.html
+        run: |
+          cp dist/index.html dist/404.html
 
       # 部署到 GitHub Pages
       - name: Deploy
